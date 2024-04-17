@@ -63,7 +63,7 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [x] Commit: `Implement subscribe function in Notification controller.`
     -   [x] Commit: `Implement unsubscribe function in Notification service.`
     -   [x] Commit: `Implement unsubscribe function in Notification controller.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
+    -   [x] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
 -   **STAGE 3: Implement notification mechanism**
     -   [ ] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
     -   [ ] Commit: `Implement notify function in Notification service to notify each Subscriber.`
@@ -79,14 +79,19 @@ This is the place for you to write reflections:
 #### Reflection Publisher-1
 1. Dalam *Observer design pattersn*, penerapan *interface* (atau *traits* dalam Rust) biasanya lebih disarankan karena memberikan fleksibilitas lebih tinggi dalam menambahkan berbagai tipe *subscriber*. Keberadaan *interface* memungkinkan kita untuk tidak perlu mengubah kode yang sudah ada, mengikuti *Open-close principle*. Namun, apabila hanya ada satu tipe *subscriber* dan dipastikan tidak akan bertambah, penggunaan *Single model struct* sudah memadai. Sehingga, jika pada kasus BambangShop hanya terdapat satu tipe *subscriber* dan dipastikan tidak ada penambahan tipe lain, maka *single model struct* sudah cukup untuk keperluan tersebut.
 <br>
-<br>
 
 2. Menurut saya, penggunaan DashMap diperlukan untuk kasus ini. Salah satu kelebihan dari DashMap adalah kemampuannya untuk menyimpan key-value *pairs*, di mana *key* bersifat unik. Dengan DashMap, pencarian berdasarkan *key* menjadi lebih efisien. Dalam kasus ini, penggunaan DashMap memudahkan kita untuk menemukan *Subscriber* berdasarkan *url*-nya secara langsung. Sementara itu, apabila menggunakan *Vec*, proses pencarian harus dilakukan dengan cara iterasi untuk menemukan *Subscriber* yang tepat, yang mana dapat menghambat efisiensi dalam pengambilan dan *update* data.
-<br>
 <br>
 
 3. Dalam pemrograman menggunakan Rust, DashMap digunakan dalam *Singleton pattern* untuk membantu mengelola operasi baca dan tulis secara bersamaan. Oleh karena itu, menurut saya penggunaan DashMap lebih baik jika dibandingkan dengan *HashMap* biasa, terutama dalam konteks aplikasi *multithreading*. Aplikasi yang kita kembangkan memerlukan kemampuan ini karena akan diakses oleh banyak *thread*. Dengan mengimplementasikan *Singleton pattern* seperti yang telah kita lakukan, kita bisa memastikan bahwa seluruh objek *subscriber* hanya berada dalam satu DashMap, karena *Singleton pattern* menjamin hanya ada satu *instance* dari objek tersebut. Ini mengoptimalkan manajemen sumber daya dalam aplikasi *multithreaded* dan memperkuat keamanan *thread*.
 
 #### Reflection Publisher-2
+1. Dalam *Model-View-Controller* (MVC) *compound pattern*, model mencakup penyimpanan data dan logika bisnis. Namun, pemisahan "Service" dan "Repository" dari model diperlukan untuk memenuhi *Single Responsibility Principle*. Dalam MVC, model sering kali terlalu kompleks karena mengelola *business logic*, validasi, data itu sendiri, dan operasi penyimpanan data. Dengan memindahkan *business logic* ke dalam "Service" dan operasi penyimpanan data ke "Repository", model kini hanya berperan sebagai representasi atau struktur dari kumpulan data tersebut. Pendekatan ini akan meningkatkan modularitas dan memudahkan pemeliharaan kode milik kita, karena setiap komponen akan memiliki fokus yang lebih spesifik.
+<br>
+
+2. Jika kita hanya menggunakan Model, maka kode untuk setiap Model akan menjadi besar. Hal ini akan mengakibatkan kode semakin kompleks dan sulit untuk dipahami. kode menjadi lebih sulit untuk dipahami dan di-*maintain*. Kondisi ini juga akan melanggar Single Responsibility Principle, di mana setiap komponen seharusnya hanya memiliki satu tanggung jawab. Misalnya, ketika ingin memodifikasi suatu logika, kita perlu memastikan bahwa perubahan tersebut tidak mempengaruhi komponen lain dalam aplikasi. Tanpa pemisahan yang jelas, hal ini dapat meningkatkan tingkat *coupling* antar komponen, sehingga mengurangi efektivitas dan efisiensi pemeliharaan kode.
+<br>
+
+3. Menurut saya, Postman adalah *tool* yang sangat bermanfaat untuk membuat dan mengembangkan suatu aplikasi, terutama dalam pengujian API. Postman memungkinkan saya untuk mengirim *HTTP request* dan memeriksa *response* yang diterima. Tentunya hal ini akan sangat membantu dalam proses *debugging* dan dalam peningkatan kualitas API pada *project* yang akan saya lakukan di kemudian hari.
 
 #### Reflection Publisher-3
