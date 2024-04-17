@@ -68,8 +68,8 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [x] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
     -   [x] Commit: `Implement notify function in Notification service to notify each Subscriber.`
     -   [x] Commit: `Implement publish function in Program service and Program controller.`
-    -   [ ] Commit: `Edit Product service methods to call notify after create/delete.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-3" questions in this README.
+    -   [x] Commit: `Edit Product service methods to call notify after create/delete.`
+    -   [x] Write answers of your learning module's "Reflection Publisher-3" questions in this README.
 
 ## Your Reflections
 This is the place for you to write reflections:
@@ -95,3 +95,10 @@ This is the place for you to write reflections:
 3. Menurut saya, Postman adalah *tool* yang sangat bermanfaat untuk membuat dan mengembangkan suatu aplikasi, terutama dalam pengujian API. Postman memungkinkan saya untuk mengirim *HTTP request* dan memeriksa *response* yang diterima. Tentunya hal ini akan sangat membantu dalam proses *debugging* dan dalam peningkatan kualitas API pada *project* yang akan saya lakukan di kemudian hari.
 
 #### Reflection Publisher-3
+1. Pada kasus, kita menerapkan variasi *Push Model* dari *Observer pattern*. Penyebabnya adalah setiap kali terjadi penambahan atau penghapusan produk, `notify` *method* pada `NotificationService` dijalankan. Hal ini menunjukkan bahwa *publisher* memiliki kemampuan untuk secara proaktif mengirim notifikasi dan data terkait kepada *subscriber*-nya. *Subscriber* menerima notifikasi ini secara otomatis tanpa perlu membuat *request* terlebih dahulu.
+<br>
+
+2. Jika kita menerapkan variasi *Pull Model* dari *Observer pattern* pada tutorial ini, maka *subscriber* yang akan menentukan kapan mereka mengambil data atau menerima notifikasi dari *publisher*. Keuntungan dari pendekatan ini adalah *subscriber* dapat mengontrol waktu pengambilan data, sehingga tidak terganggu oleh notifikasi pada waktu yang tidak diinginkan. Selain itu, *subscriber* juga dapat memilih data spesifik yang ingin mereka ambil. Namun, kelemahannya adalah *subscriber* tidak akan dapat menerima data atau notifikasi secara langsung atau segera saat terjadi penambahan atau penghapusan produk, yang bisa menghambat responsivitas dalam beberapa skenario.
+<br>
+
+3. Jika kita tidak menggunakan *multi-threading*, maka aplikasi akan mengirim notifikasi secara berurutan satu per satu. Kondisi ini dapat menyebabkan proses pengiriman notifikasi menjadi lambat, terutama bila jumlah *subscriber* banyak. Meskipun program tidak akan mengalami error, kecepatan proses notifikasi bisa terhambat secara signifikan.
