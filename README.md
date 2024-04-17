@@ -56,7 +56,7 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [x] Commit: `Implement add function in Subscriber repository.`
     -   [x] Commit: `Implement list_all function in Subscriber repository.`
     -   [x] Commit: `Implement delete function in Subscriber repository.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
+    -   [x] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
 -   **STAGE 2: Implement services and controllers**
     -   [ ] Commit: `Create Notification service struct skeleton.`
     -   [ ] Commit: `Implement subscribe function in Notification service.`
@@ -77,6 +77,15 @@ This is the place for you to write reflections:
 ### Mandatory (Publisher) Reflections
 
 #### Reflection Publisher-1
+1. Dalam *Observer design pattersn*, penerapan *interface* (atau *traits* dalam Rust) biasanya lebih disarankan karena memberikan fleksibilitas lebih tinggi dalam menambahkan berbagai tipe *subscriber*. Keberadaan *interface* memungkinkan kita untuk tidak perlu mengubah kode yang sudah ada, mengikuti *Open-close principle*. Namun, apabila hanya ada satu tipe *subscriber* dan dipastikan tidak akan bertambah, penggunaan *Single model struct* sudah memadai. Sehingga, jika pada kasus BambangShop hanya terdapat satu tipe *subscriber* dan dipastikan tidak ada penambahan tipe lain, maka *single model struct* sudah cukup untuk keperluan tersebut.
+<br>
+<br>
+
+2. Menurut saya, penggunaan DashMap diperlukan untuk kasus ini. Salah satu kelebihan dari DashMap adalah kemampuannya untuk menyimpan key-value *pairs*, di mana *key* bersifat unik. Dengan DashMap, pencarian berdasarkan *key* menjadi lebih efisien. Dalam kasus ini, penggunaan DashMap memudahkan kita untuk menemukan *Subscriber* berdasarkan *url*-nya secara langsung. Sementara itu, apabila menggunakan *Vec*, proses pencarian harus dilakukan dengan cara iterasi untuk menemukan *Subscriber* yang tepat, yang mana dapat menghambat efisiensi dalam pengambilan dan *update* data.
+<br>
+<br>
+
+3. Dalam pemrograman menggunakan Rust, DashMap digunakan dalam *Singleton pattern* untuk membantu mengelola operasi baca dan tulis secara bersamaan. Oleh karena itu, menurut saya penggunaan DashMap lebih baik jika dibandingkan dengan *HashMap* biasa, terutama dalam konteks aplikasi *multithreading*. Aplikasi yang kita kembangkan memerlukan kemampuan ini karena akan diakses oleh banyak *thread*. Dengan mengimplementasikan *Singleton pattern* seperti yang telah kita lakukan, kita bisa memastikan bahwa seluruh objek *subscriber* hanya berada dalam satu DashMap, karena *Singleton pattern* menjamin hanya ada satu *instance* dari objek tersebut. Ini mengoptimalkan manajemen sumber daya dalam aplikasi *multithreaded* dan memperkuat keamanan *thread*.
 
 #### Reflection Publisher-2
 
